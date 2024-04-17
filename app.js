@@ -1,6 +1,10 @@
 var express=require('express');
 var app=express();
 
+//bootstrap
+app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
+app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
+
 app.set('views', __dirname + '/views');
 app.set('views engine', "ejs");
 
