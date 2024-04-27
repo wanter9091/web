@@ -1,20 +1,8 @@
-const express = require('express')
-const cors=require('cors')
-const app = express()
+var express=require('express');
+var router=express.Router();
 
-app.use(cors())
-
-
-app.get('/user/:id', function (req, res) {
-    const {id}=req.params
-    res.send(id)
-})
-app.get('/dog', function (req, res) {
-    res.json({'sound': '멍멍'})
-})
-app.get('/cat', function (req, res) {
-    res.send('냥')
+router.get('/', function(req,res){
+    res.render('index');
 })
 
-
-app.listen(3000)
+module.exports=router;

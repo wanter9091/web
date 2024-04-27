@@ -10,23 +10,15 @@ app.set("view engine", "ejs");
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
+//post
 app.use(express.urlencoded({extened: true}));
 
-app.get('/', (req, res)=>{
-    res.render('index');
-})
+//router
+var indexRouter=require('./router');
+var resultRouter=require('./router/result');
 
-app.get('/result', (req,res)=>{
-    var val1=req.query.val1;
-    var val2=req.query.val2;
-    res.render('result',{'val1':val1,'val2':val2});
-})
-
-app.post('/result', (req,res)=>{
-    var val1=req.body.val1;
-    var val2=req.body.val2;
-    res.render('result',{'val1':val1,'val2':val2});
-})
+app.use('/', indexRouter);// 괄호 안을 /a로 하면 http://localhost:3000/a로 들어가야 index가 열림
+app.use('/', resultRouter);
 
 app.listen(3000, ()=>{
     console.log('3000포트 서버 시작');
