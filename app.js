@@ -1,3 +1,4 @@
+//express
 var express=require('express');
 var app=express();
 
@@ -9,6 +10,8 @@ app.set("view engine", "ejs");
 app.use('/js', express.static(__dirname + '/node_modules/bootstrap/dist/js')); 
 app.use('/css', express.static(__dirname + '/node_modules/bootstrap/dist/css'));
 
+app.use(express.urlencoded({extened: true}));
+
 app.get('/', (req, res)=>{
     res.render('index');
 })
@@ -16,6 +19,12 @@ app.get('/', (req, res)=>{
 app.get('/result', (req,res)=>{
     var val1=req.query.val1;
     var val2=req.query.val2;
+    res.render('result',{'val1':val1,'val2':val2});
+})
+
+app.post('/result', (req,res)=>{
+    var val1=req.body.val1;
+    var val2=req.body.val2;
     res.render('result',{'val1':val1,'val2':val2});
 })
 
