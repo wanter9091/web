@@ -27,7 +27,8 @@ app.use('/', uploadRouter);
 //jquery
 app.use('/js', express.static(__dirname+'/node_modules/jquery/dist'));
 
-
+//img
+app.use(express.static('upload'));
 
 app.listen(3000, ()=>{
     console.log('3000포트 서버 시작');
