@@ -20,6 +20,9 @@ var resultRouter=require('./router/result');
 app.use('/', indexRouter);// 괄호 안을 /a로 하면 http://localhost:3000/a로 들어가야 index가 열림
 app.use('/', resultRouter);
 
+var boardRouter=require('./router/board');
+app.use('/', boardRouter);
+
 //upload
 var uploadRouter = require('./router/upload');
 app.use('/', uploadRouter);
