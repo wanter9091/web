@@ -20,6 +20,16 @@ router.get('/board', function(req,res){
     })
 })
 
+router.get(`/board/view/:idx`, function(req,res){
+    var idx=req.params.idx;
+    var sql="select * from board where idx=?";
+    db.query(sql,[idx], (err, rows)=>{
+        res.render('board/view',{
+            result: rows[0]
+        });
+    })
+})
+
 router.post('/board/write', (req,res)=>{
     var writer=req.body.writer;
     var password=req.body.password;
