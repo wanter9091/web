@@ -11,6 +11,15 @@ router.get('/board/write', function(req,res){
     res.render('board/write');
 })
 
+router.get('/board', function(req,res){
+    var sql="select * from board";
+    db.query(sql, (err, rows)=>{
+        res.render('board',{
+            rows: rows
+        });
+    })
+})
+
 router.post('/board/write', (req,res)=>{
     var writer=req.body.writer;
     var password=req.body.password;
