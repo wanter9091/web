@@ -1,41 +1,40 @@
 <%- include("../include/header") -%>
     <div class="container">
-        <h3>게시판리스트</h3>
-        <table class="table table-border text-center">
-            <thead>
-                <tr>
-                    <th scope="col">번호</th>
-                    <th scope="col">글쓴이</th>
-                    <th scope="col">제목</th>
-                    <th scope="col">작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% 
-                if(rows.length==0){ %>
-                <td colspan="4">게시글이 없습니다.</td>
-                <% 
-                } %>
-                <% 
-                for(var i=0;i<rows.length;i++){ 
-                    var result=rows[i]; %>
-                    <tr>
-                        <% 
-                        if(result.del_yn=="Y" ){ %>
-                            <td colspan="4">삭제된 게시글입니다.</td>
-                        <% 
-                        }
-                        else{ %>
-                            <td><%=i+1%></td>
-                            <td><%=result.writer%></td>
-                            <td class="w-50"><a class="text-decoration-none" href="/board/view/<%=result.idx%>"><%=result.title %> 
-                            <td><%=result.date%></td>
-                    </tr>
-                    <% } } %>
-            </tbody>
-        </table>
-        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-            <a href="/board/write" class="btn btn-primary">글쓰기</a>
-        </div>
-    </div>
-<%- include("../include/footer") -%>
+        <h3 class="mb-5">게시판글보기</h3>
+        <div class="container">
+            <div class="d-flex justify-content-md-between mb-3">
+                <p>작성일 : <%=result.date%>
+                </p>
+                <p>게시글번호 : <%=result.idx%>
+                </p>
+                <div class="btn-group">
+                    <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                        <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/board/modify/<%=result.idx%>">수정</a></li>
+                        <li><a class="dropdown-item" href="/board/delete/<%=result.idx%>">삭제</a></li>
+                        </ul>
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label for="staticEmail" class="col-sm-2 col-form-label">글쓴이 : </label>
+                <div class="col-sm-10">
+                    <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%=result.writer%>">
+</div>
+</div>
+<div class=" mb-3 row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label">제목 : </label>
+                    <div class="col-sm-10">
+                        <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%=result.title%>">
+</div>
+</div>
+<div class=" mb-3 row">
+                        <label for="staticEmail" class="col-sm-2 col-form-label">내용 : </label>
+                        <div class="col-sm-10">
+                            <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="<%=result.content%>">
+</div>
+</div>
+<div class=" d-grid gap-2 d-md-flex justify-content-md-end">
+                            <a href="/board" class="btn btn-primary">돌아가기</a>
+                        </div>
+                    </div>
+                    <%- include("../include/footer") -%>

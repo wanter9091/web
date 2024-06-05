@@ -1,0 +1,17 @@
+<%- include("../include/header") -%>
+    <div>
+        <h1>게시글<%=act %></h1>
+        <div>
+            게시글번호 : <%=idx %>
+        </div>
+        <div>
+            <%=act %>하려면 게시글 비밀번호를 입력해주세요.
+        </div>
+        <div>
+            <form action="/board/<%=act2%>/<%=idx%>" method="post">
+                <input name="password">
+                <button type="submit"><%=act %></button>
+            </form>
+        </div>
+    </div>
+<%- include("../include/footer") -%>
